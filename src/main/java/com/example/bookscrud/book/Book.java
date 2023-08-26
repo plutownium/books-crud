@@ -2,7 +2,7 @@ package com.example.bookscrud.book;
 
 import java.sql.SQLException;
 
-import com.example.bookscrud.SQLQueriesTool;
+import com.example.bookscrud.db.Database;
 import com.example.bookscrud.sqlMaker.AuthorshipSQLMaker;
 import com.example.bookscrud.sqlMaker.BookSQLMaker;
 
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 
 public class Book {
     private ResultSet book;
-    private SQLQueriesTool pg;
+    private Database pg;
     //
     private Integer id;
     private String name;
@@ -18,21 +18,18 @@ public class Book {
     private Integer year;
     private Boolean rented;
 
-    public Book(SQLQueriesTool pg, String name, Integer authorId, Integer published) throws SQLException {
+    public Book(Database pg, String name, Integer authorId, Integer published) throws SQLException {
         this.name = name;
         this.authorId = authorId;
         this.year = published;
         BookSQLMaker bookTool = new BookSQLMaker();
         String query = bookTool.createBook(name, published);
-//        System.out.println("=========");
-//        System.out.println(query);
         ResultSet book = pg.operate(query);
         this.setBook(book);
         this.setPg(pg);
         // establish link
         AuthorshipSQLMaker authorshipTool = new AuthorshipSQLMaker();
         String linkingQuery = authorshipTool.createAuthorship(authorId, this.getId());
-//        System.out.println("Linking query:" + linkingQuery);
         pg.operateUpdate(linkingQuery);
     }
 
@@ -48,11 +45,11 @@ public class Book {
         this.book = book;
     }
 
-    private void setPg(SQLQueriesTool pg) {
+    private void setPg(Database pg) {
         this.pg = pg;
     }
 
-    private SQLQueriesTool getPg() {
+    private Database getPg() {
         return this.pg;
     }
 
@@ -74,7 +71,7 @@ public class Book {
     public void addAuthor(Integer authorId) throws SQLException {
         AuthorshipSQLMaker authorshipTool = new AuthorshipSQLMaker();
         String linkingQuery = authorshipTool.createAuthorship(authorId, this.getId());
-        SQLQueriesTool pg = this.getPg();
+        Database pg = this.getPg();
         pg.operateUpdate(linkingQuery);
         BookSQLMaker bookTool = new BookSQLMaker();
         ResultSet linked = pg.operate(bookTool.getBooksForAuthor(authorId));

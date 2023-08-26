@@ -4,7 +4,7 @@ package com.example.bookscrud.objects;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-import com.example.bookscrud.SQLQueriesTool;
+import com.example.bookscrud.db.Database;
 import com.example.bookscrud.sqlMaker.AuthorSQLMaker;
 
 
@@ -18,7 +18,7 @@ public class Author {
 
     private Integer age;
 
-    public Author(SQLQueriesTool pg, String fn, Integer age) throws SQLException {
+    public Author(Database pg, String fn, Integer age) throws SQLException {
         AuthorSQLMaker authorTool = new AuthorSQLMaker();
 
         String query = authorTool.createAuthor(fn, age);

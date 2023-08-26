@@ -3,18 +3,19 @@ package com.example.bookscrud.objects;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.example.bookscrud.SQLQueriesTool;
+import com.example.bookscrud.db.Database;
 import com.example.bookscrud.extractor.HighlightExtractor;
 import com.example.bookscrud.sqlMaker.BookSQLMaker;
 import com.example.bookscrud.sqlMaker.GuestSQLMaker;
 import com.example.bookscrud.sqlMaker.HighlightSQLMaker;
+import com.example.bookscrud.book.Book;
 
 
 
 public class Guest {
 
     private ResultSet guest;
-    private SQLQueriesTool pg;
+    private Database pg;
 
     private Integer id;
     private String name;
@@ -23,7 +24,7 @@ public class Guest {
     private Integer favoriteAuthorId;
 
 
-    public Guest(SQLQueriesTool pg, String name) throws SQLException {
+    public Guest(Database pg, String name) throws SQLException {
         GuestSQLMaker guestTool = new GuestSQLMaker();
 
         Integer startingCheckouts = 0;
@@ -43,7 +44,7 @@ public class Guest {
 
     public void rentBook(Book book) throws SQLException {
         BookSQLMaker bookTool = new BookSQLMaker();
-        System.out.println(book);
+
         String markRentedQuery = bookTool.rentBookToGuest(book.getId()); // mark book rented
         this.getPg().operateUpdate(markRentedQuery);
         //
@@ -62,7 +63,7 @@ public class Guest {
         this.id = id;
     }
 
-    private void setPg(SQLQueriesTool pg) {
+    private void setPg(Database pg) {
         this.pg = pg;
     }
 
@@ -74,7 +75,7 @@ public class Guest {
         return this.borrowedBookId;
     }
 
-    private SQLQueriesTool getPg() {
+    private Database getPg() {
         return this.pg;
     }
 
