@@ -59,11 +59,16 @@ public class Database {
     }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource() throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+        System.out.println("Driver version: " + org.postgresql.Driver.getVersion());
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+
 //        driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        driverManagerDataSource.setDriverClassName(DATABASE_DRIVER);
-        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/mysecurity?serverTimezone=UTC");
+        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
+
+//        driverManagerDataSource.setDriverClassName(DATABASE_DRIVER);
+        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/libraryapp");
         driverManagerDataSource.setUsername("postgres");
         driverManagerDataSource.setPassword("postgres");
         return driverManagerDataSource;

@@ -14,7 +14,7 @@ pages have highlights
 
 mvn package
 
-mvn exec:java -Dexec.mainClass="com.example.bookscrud.Main"
+mvn exec:java -Dexec.mainClass="com.example.bookscrud.BooksCrudApplication"
 
 # To do
 
