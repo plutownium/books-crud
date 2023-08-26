@@ -10,11 +10,13 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class Database {
     private final String url = "jdbc:postgresql://localhost:5432/";
     private final String dbName = "libraryapp"; // note lowercase
@@ -59,7 +61,8 @@ public class Database {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//        driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        driverManagerDataSource.setDriverClassName(DATABASE_DRIVER);
         driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/mysecurity?serverTimezone=UTC");
         driverManagerDataSource.setUsername("postgres");
         driverManagerDataSource.setPassword("postgres");
