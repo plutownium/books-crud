@@ -13,7 +13,9 @@ import javax.sql.DataSource;
 
 //import org.hibernate.sql.results.spi.ResultsConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 import com.example.bookscrud.db.Database;
 import com.example.bookscrud.sqlMaker.BookSQLMaker;
 
+@Repository
 public class BookRepositoryImpl implements BookRepository {
     private Database db;
     public BookRepositoryImpl() {
