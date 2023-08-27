@@ -76,6 +76,10 @@ public class Book {
         return this.rented;
     }
 
+    public int getAuthorId() {
+        return this.authorId;
+    }
+
     public void addAuthor(Integer authorId) throws SQLException {
         AuthorshipSQLMaker authorshipTool = new AuthorshipSQLMaker();
         String linkingQuery = authorshipTool.createAuthorship(authorId, this.getId());

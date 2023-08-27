@@ -80,12 +80,13 @@ public class BookRepositoryImpl implements BookRepository {
             while (resultSet.next()) {
                 Long id = Long.valueOf(resultSet.getInt("id"));
                 String name = resultSet.getString("name");
+                long authorId = Long.valueOf(resultSet.getInt("authorid"));
                 String email = resultSet.getString("email");
                 int age = resultSet.getInt("age");
                 String address = resultSet.getString("address");
                 double gpa = resultSet.getDouble("gpa");
                 LocalDate dob = resultSet.getDate("dob").toLocalDate();
-                Book retrieved = new Book(Math.toIntExact(id), name, 1, false);
+                Book retrieved = new Book(Math.toIntExact(id), name, 1, false, Math.toIntExact(authorId));
                 currentBooks.add(retrieved);
             }
         } catch(SQLException e) {
@@ -110,12 +111,13 @@ public class BookRepositoryImpl implements BookRepository {
             while (x) {
                 Long id = Long.valueOf(resultSet.getInt("id"));
                 String name = resultSet.getString("name");
+                long authorId = Long.valueOf(resultSet.getInt("authorid"));
                 String email = resultSet.getString("email");
                 int age = resultSet.getInt("age");
                 String address = resultSet.getString("address");
                 double gpa = resultSet.getDouble("gpa");
                 LocalDate dob = resultSet.getDate("dob").toLocalDate();
-                newBook = new Book(Math.toIntExact(id), name,100, false);
+                newBook = new Book(Math.toIntExact(id), name,100, false, Math.toIntExact(authorId));
                 // Book newBook = new Book(3L, "hatttt", "cattttt", LocalDate.of(1111, Month.MARCH, 3), 5);
                 return newBook;
             }

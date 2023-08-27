@@ -20,6 +20,7 @@ public class BookExtractor {
             Integer year = 0;
             Integer id = 0;
             Boolean rented = false;
+            Integer authorId = 0;
             for (int i = 1; i <= columnCount; i++) {
                 String columnValue = rs.getString(i);
                 String colName = rsmd.getColumnName(i);
@@ -36,12 +37,14 @@ public class BookExtractor {
                     } else {
                         rented = Boolean.parseBoolean(columnValue);
                     }
+                } else if (colName.equals("authorid")) {
+                    authorId = Integer.parseInt(columnValue);
                 } else {
                     System.out.println("Unexpected:" + columnValue + " ::from col:: " + colName);
                 }
 
             }
-            Book newBook = new Book(id, title, year, rented);
+            Book newBook = new Book(id, title, year, rented, authorId);
             found.add(newBook);
         }
 

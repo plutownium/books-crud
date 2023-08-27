@@ -21,8 +21,8 @@ public class BookSQLMaker {
     }
 
     public String createBookFromObj(Book book) {
-        return String.format("INSERT INTO Books (title, year, rented) " +
-                "VALUES ('%s', '%s', '%s') RETURNING id;", book.getTitle(), book.getYear(), book.getRentedStatus());
+        return String.format("INSERT INTO Books (title, year, rented, author_id) " +
+                "VALUES ('%s', '%s', '%s', '%s') RETURNING id;", book.getTitle(), book.getYear(), book.getRentedStatus(), book.getAuthorId());
     }
 
 
