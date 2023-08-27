@@ -14,13 +14,13 @@ public class AuthorSQLMaker {
                 " PUBLISHED              INT     NOT NULL);");
     }
 
-    public String createAuthor(String firstName, String lastName, Integer age) {
-        return String.format("INSERT INTO Authors (firstname, lastname, age) " +
-                "VALUES ('%s', '%s', '%s') RETURNING id;", firstName, lastName, age);
+    public String createAuthor(String firstName, String lastName, Integer published) {
+        return String.format("INSERT INTO Authors (firstname, lastname, published) " +
+                "VALUES ('%s', '%s', '%s') RETURNING id;", firstName, lastName, published);
     }
 
     public String createAuthorFromObj(Author author) {
-        return String.format("INSERT INTO Authors (firstname, lastname, age) " +
+        return String.format("INSERT INTO Authors (firstname, lastname, published) " +
                 "VALUES ('%s', '%s', '%s') RETURNING id;", author.getFn(), author.getLn(), author.getYearPublished());
     }
 

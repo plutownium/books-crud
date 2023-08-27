@@ -9,9 +9,9 @@ public class BookSQLMaker {
                 "(ID                     SERIAL PRIMARY KEY," +
                 " TITLE                  TEXT    NOT NULL, " +
                 " YEAR                   INT     NOT NULL, " +
-                " RENTED                 BOOLEAN NULL  " +
-                " AUTHOR_ID              INT     NOT NULL " +
-                " FOREIGN KEY (author_id) REFERENCES Author(id)," +
+                " RENTED                 BOOLEAN NULL,  " +
+                " AUTHOR_ID              INT     NOT NULL, " +
+                " FOREIGN KEY (author_id) REFERENCES Authors(id)" +
                 ");");
     }
 

@@ -35,11 +35,12 @@ public class Book {
 //    }
 
     // for creating books that already exist in the db
-    public Book(Integer id, String name, Integer published, boolean rented)  {
+    public Book(Integer id, String name, Integer published, boolean rented, Integer authorId)  {
         this.id = id;
         this.name = name;
         this.year = published;
         this.rented = rented;
+        this.authorId = authorId;
     }
 
     private void setBook(ResultSet book) {

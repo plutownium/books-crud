@@ -30,6 +30,7 @@ public class BooksCrudApplication {
 		Database db = new Database();
 		db.connect();
 		Seeder seeder = new Seeder(db);
+		seeder.createTablesIfNotExists();
 		int NUM_OF_SEED_AUTHORS = 6;
 		int NUM_OF_SEED_BOOKS = 10;
 		int NUM_OF_SEED_GUESTS = 3;

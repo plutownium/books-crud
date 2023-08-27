@@ -25,13 +25,13 @@ public class Seeds {
 
     public List<Book> getSeedBooks() {
         List<Book> seedBooks = new ArrayList<Book>();
-        seedBooks.add(new Book(0, "Hats For Cats", 1999, false));
-        seedBooks.add(new Book(1, "Jazz Is Big Now", 2001, false));
-        seedBooks.add(new Book(2, "Fireplaces In Europe", 2003, false));
-        seedBooks.add(new Book(3, "Modern Castles", 2005, false));
-        seedBooks.add(new Book(4, "Short Titles for Books", 2007, false));
-        seedBooks.add(new Book(5, "Overwatch: Strategies", 2009, false));
-        seedBooks.add(new Book(6, "Chrono Trigger", 2011, false));
+        seedBooks.add(new Book(0, "Hats For Cats", 1999, false, 0));
+        seedBooks.add(new Book(1, "Jazz Is Big Now", 2001, false, 1));
+        seedBooks.add(new Book(2, "Fireplaces In Europe", 2003, false, 2));
+        seedBooks.add(new Book(3, "Modern Castles", 2005, false,3 ));
+        seedBooks.add(new Book(4, "Short Titles for Books", 2007, false,4 ));
+        seedBooks.add(new Book(5, "Overwatch: Strategies", 2009, false,5 ));
+        seedBooks.add(new Book(6, "Chrono Trigger", 2011, false,5 ));
         return seedBooks;
     }
 }
