@@ -11,7 +11,7 @@ public class AuthorSQLMaker {
                 "(ID                     SERIAL PRIMARY KEY," +
                 " FIRSTNAME              TEXT    NOT NULL, " +
                 " LASTNAME               TEXT    NOT NULL, " +
-                " AGE                    INT     NOT NULL);");
+                " PUBLISHED              INT     NOT NULL);");
     }
 
     public String createAuthor(String firstName, String lastName, Integer age) {

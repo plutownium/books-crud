@@ -67,14 +67,16 @@ public class AuthorRepositoryImpl implements AuthorRepository {
             // boolean x = resultSet.next();
             // System.out.println(x);
             while (resultSet.next()) {
-                Long id = Long.valueOf(resultSet.getInt("id"));
-                String name = resultSet.getString("name");
+                long id = (long) resultSet.getInt("id");
+                String fn = resultSet.getString("firstname");
+                String ln = resultSet.getString("lastname");
+                long published = (long) resultSet.getInt("published");
                 String email = resultSet.getString("email");
                 int age = resultSet.getInt("age");
                 String address = resultSet.getString("address");
                 double gpa = resultSet.getDouble("gpa");
                 LocalDate dob = resultSet.getDate("dob").toLocalDate();
-                Author retrieved = new Author(this.db, name, 1, 2);
+                Author retrieved = new Author(Math.toIntExact(id), fn, ln, Math.toIntExact(published));
                 currentBooks.add(retrieved);
             }
         } catch(SQLException e) {
@@ -97,14 +99,16 @@ public class AuthorRepositoryImpl implements AuthorRepository {
             boolean x = resultSet.next();
             System.out.println(x);
             while (x) {
-                Long id = Long.valueOf(resultSet.getInt("id"));
-                String name = resultSet.getString("name");
+                long id = (long) resultSet.getInt("id");
+                String fn = resultSet.getString("firstname");
+                String ln = resultSet.getString("lastname");
+                long published = (long) resultSet.getInt("published");
                 String email = resultSet.getString("email");
                 int age = resultSet.getInt("age");
                 String address = resultSet.getString("address");
                 double gpa = resultSet.getDouble("gpa");
                 LocalDate dob = resultSet.getDate("dob").toLocalDate();
-                newBook = new Author(this.db, name,100, 101);
+                newBook = new Author(Math.toIntExact(id), fn, ln, Math.toIntExact(published));
                 // Book newBook = new Book(3L, "hatttt", "cattttt", LocalDate.of(1111, Month.MARCH, 3), 5);
                 return newBook;
             }

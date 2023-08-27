@@ -1,5 +1,8 @@
 package com.example.bookscrud.sqlMaker;
 
+import com.example.bookscrud.author.Author;
+import com.example.bookscrud.book.Book;
+
 public class BookSQLMaker {
     public String createBookTableIfNotExists()  {
         return String.format("CREATE TABLE IF NOT EXISTS Books " +
@@ -15,6 +18,11 @@ public class BookSQLMaker {
     public String createBook(String title, int year)  {
         return String.format("INSERT INTO Books (title, year, rented) " +
                 "VALUES ('%s', %s, false) RETURNING id;", title, year);
+    }
+
+    public String createBookFromObj(Book book) {
+        return String.format("INSERT INTO Books (title, year, rented) " +
+                "VALUES ('%s', '%s', '%s') RETURNING id;", book.getTitle(), book.getYear(), book.getRentedStatus());
     }
 
 

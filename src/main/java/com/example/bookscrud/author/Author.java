@@ -87,6 +87,6 @@ public class Author {
 
     public String toString() {
         return String.format("Book {name: %s, authorId: %s, name: %s, rented: %s }",
-                name, authorId, name, rented);
+                this.fn + this.ln, authorId, "temp", rented);
     }
 }

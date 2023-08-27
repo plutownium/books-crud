@@ -62,14 +62,27 @@ public class Book {
         return id;
     }
 
+
+    public String getTitle() {
+        return this.name;
+    }
+
+    public int getYear() {
+        return this.year;
+    }
+
+    public boolean getRentedStatus() {
+        return this.rented;
+    }
+
     public void addAuthor(Integer authorId) throws SQLException {
         AuthorshipSQLMaker authorshipTool = new AuthorshipSQLMaker();
         String linkingQuery = authorshipTool.createAuthorship(authorId, this.getId());
-        Database pg = this.getPg();
-        pg.operateUpdate(linkingQuery);
-        BookSQLMaker bookTool = new BookSQLMaker();
-        ResultSet linked = pg.operate(bookTool.getBooksForAuthor(authorId));
-        this.setBook(linked);
+//        Database pg = this.getPg();
+//        pg.operateUpdate(linkingQuery);
+//        BookSQLMaker bookTool = new BookSQLMaker();
+//        ResultSet linked = pg.operate(bookTool.getBooksForAuthor(authorId));
+//        this.setBook(linked);
 
     }
 

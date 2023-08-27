@@ -85,7 +85,7 @@ public class BookRepositoryImpl implements BookRepository {
                 String address = resultSet.getString("address");
                 double gpa = resultSet.getDouble("gpa");
                 LocalDate dob = resultSet.getDate("dob").toLocalDate();
-                Book retrieved = new Book(this.db, name, 1, 2);
+                Book retrieved = new Book(Math.toIntExact(id), name, 1, false);
                 currentBooks.add(retrieved);
             }
         } catch(SQLException e) {
@@ -115,7 +115,7 @@ public class BookRepositoryImpl implements BookRepository {
                 String address = resultSet.getString("address");
                 double gpa = resultSet.getDouble("gpa");
                 LocalDate dob = resultSet.getDate("dob").toLocalDate();
-                newBook = new Book(this.db, name,100, 101);
+                newBook = new Book(Math.toIntExact(id), name,100, false);
                 // Book newBook = new Book(3L, "hatttt", "cattttt", LocalDate.of(1111, Month.MARCH, 3), 5);
                 return newBook;
             }

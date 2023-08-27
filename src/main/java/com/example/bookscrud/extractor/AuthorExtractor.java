@@ -18,7 +18,8 @@ public class AuthorExtractor {
         while (rs.next()) {
             Integer id = 0;
             String firstName = "";
-            Integer age = 0;
+            String lastName = "";
+            Integer published = 0;
             for (int i = 1; i <= columnCount; i++) {
                 String columnValue = rs.getString(i);
                 String colName = rsmd.getColumnName(i);
@@ -26,14 +27,16 @@ public class AuthorExtractor {
                     id = Integer.parseInt(columnValue);
                 } else if (colName.equals("firstname")) {
                     firstName = columnValue;
-                } else if (colName.equals("age")) {
-                    age = Integer.parseInt(columnValue);
+                } else if (colName.equals("lastname")) {
+                    lastName = columnValue;
+                } else if (colName.equals("published")) {
+                    published = Integer.parseInt(columnValue);
                 } else {
                     System.out.println("Unexpected:" + columnValue + " ::from col:: " + colName);
                 }
 
             }
-            Author newAuthor = new Author(id, firstName, age);
+            Author newAuthor = new Author(id, firstName, lastName, published);
             found.add(newAuthor);
         }
 
