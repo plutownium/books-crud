@@ -14,7 +14,9 @@ pages have highlights
 
 mvn package
 
-mvn exec:java -Dexec.mainClass="com.example.bookscrud.BooksCrudApplication"
+mvn exec:java -Dexec.mainClass="com.example.bookscrud.BooksCrudApplication" # doesnt work
+
+mvn spring-boot:run # maybe works
 
 # To do
 

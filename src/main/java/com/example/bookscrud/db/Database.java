@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Database {
     private final String url = "jdbc:postgresql://localhost:5432/";
-    private final String dbName = "libraryapp"; // note lowercase
+    private final String dbName = "bookscrud"; // note lowercase
     private final String username = "postgres";
     private final String password = "postgres";
 
@@ -68,7 +68,7 @@ public class Database {
         driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
 
 //        driverManagerDataSource.setDriverClassName(DATABASE_DRIVER);
-        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/libraryapp");
+        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/bookscrud");
         driverManagerDataSource.setUsername("postgres");
         driverManagerDataSource.setPassword("postgres");
         return driverManagerDataSource;
