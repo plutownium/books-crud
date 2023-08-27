@@ -26,19 +26,19 @@ public class BooksController {
     }
 
 
-    @GetMapping(value = "/see-books")
+    @GetMapping(value = "/all")
     public List<Book> getBooks() {
         return BookService.getBooks();
 
     }
 
-    @PostMapping(value = "/add-book")
-    public Book createBook(@RequestBody Book Book) {
-        System.out.println(Book);
-        return BookService.createBook(Book);
+    @PostMapping(value = "/add")
+    public Book createBook(@RequestBody Book book) {
+        System.out.println(book);
+        return BookService.createBook(book);
     }
 
-    @DeleteMapping(value = "/")
+    @DeleteMapping(value = "/delete")
     public String deleteBook(@RequestBody IdField id) {
         return BookService.deleteBook(id.getId());
     }

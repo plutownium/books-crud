@@ -7,6 +7,8 @@ public class BookSQLMaker {
                 " TITLE                  TEXT    NOT NULL, " +
                 " YEAR                   INT     NOT NULL, " +
                 " RENTED                 BOOLEAN NULL  " +
+                " AUTHOR_ID              INT     NOT NULL " +
+                " FOREIGN KEY (author_id) REFERENCES Author(id)," +
                 ");");
     }
 
