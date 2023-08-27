@@ -9,22 +9,22 @@ import java.util.List;
 @Service
 public class AuthorService {
 
-    private final AuthorRepositoryImpl BookRepository;
+    private final AuthorRepositoryImpl AuthorRepository;
 
     @Autowired
-    public AuthorService(AuthorRepositoryImpl BookRepository) {
-        this.BookRepository = BookRepository;
+    public AuthorService(AuthorRepositoryImpl AuthorRepository) {
+        this.AuthorRepository = AuthorRepository;
     }
 
-    public List<Author> getBooks() {
-        return BookRepository.getAll();
+    public List<Author> getAuthors() {
+        return AuthorRepository.getAll();
     }
 
-    public Author createBook(Author Book) {
-        return BookRepository.create(Book);
+    public Author createAuthor(Author Author) {
+        return AuthorRepository.create(Author);
     }
 
-    public String deleteBook(int id) {
-        return BookRepository.delete(id);
+    public String deleteAuthor(int id) {
+        return AuthorRepository.delete(id);
     }
 }

@@ -1,6 +1,6 @@
-package com.example.authorscrud.author;
+package com.example.bookscrud.author;
 
-import com.example.authorscrud.util.IdField;
+import com.example.bookscrud.util.IdField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

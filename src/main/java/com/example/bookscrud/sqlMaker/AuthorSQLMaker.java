@@ -1,5 +1,7 @@
 package com.example.bookscrud.sqlMaker;
 
+import com.example.bookscrud.author.Author;
+
 import java.sql.SQLException;
 
 
@@ -8,12 +10,18 @@ public class AuthorSQLMaker {
         return String.format("CREATE TABLE IF NOT EXISTS Authors " +
                 "(ID                     SERIAL PRIMARY KEY," +
                 " FIRSTNAME              TEXT    NOT NULL, " +
+                " LASTNAME               TEXT    NOT NULL, " +
                 " AGE                    INT     NOT NULL);");
     }
 
-    public String createAuthor(String firstName, Integer age) {
-        return String.format("INSERT INTO Authors (firstname, age) " +
-                "VALUES ('%s', '%s') RETURNING id;", firstName, age);
+    public String createAuthor(String firstName, String lastName, Integer age) {
+        return String.format("INSERT INTO Authors (firstname, lastname, age) " +
+                "VALUES ('%s', '%s', '%s') RETURNING id;", firstName, lastName, age);
+    }
+
+    public String createAuthorFromObj(Author author) {
+        return String.format("INSERT INTO Authors (firstname, lastname, age) " +
+                "VALUES ('%s', '%s', '%s') RETURNING id;", author.getFn(), author.getLn(), author.getYearPublished());
     }
 
     public String count() {

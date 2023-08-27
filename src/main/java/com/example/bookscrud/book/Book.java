@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 
 public class Book {
     private ResultSet book;
-    private Database pg;
+
     //
     private Integer id;
     private String name;
@@ -18,20 +18,21 @@ public class Book {
     private Integer year;
     private Boolean rented;
 
-    public Book(Database pg, String name, Integer authorId, Integer published) throws SQLException {
-        this.name = name;
-        this.authorId = authorId;
-        this.year = published;
-        BookSQLMaker bookTool = new BookSQLMaker();
-        String query = bookTool.createBook(name, published);
-        ResultSet book = pg.operate(query);
-        this.setBook(book);
-        this.setPg(pg);
-        // establish link
-        AuthorshipSQLMaker authorshipTool = new AuthorshipSQLMaker();
-        String linkingQuery = authorshipTool.createAuthorship(authorId, this.getId());
-        pg.operateUpdate(linkingQuery);
-    }
+    // why would a book constructor automatically do this?
+//    public Book(Database pg, String name, Integer authorId, Integer published) throws SQLException {
+//        this.name = name;
+//        this.authorId = authorId;
+//        this.year = published;
+//        BookSQLMaker bookTool = new BookSQLMaker();
+//        String query = bookTool.createBook(name, published);
+//        ResultSet book = pg.operate(query);
+//        this.setBook(book);
+//        this.setPg(pg);
+//        // establish link
+//        AuthorshipSQLMaker authorshipTool = new AuthorshipSQLMaker();
+//        String linkingQuery = authorshipTool.createAuthorship(authorId, this.getId());
+//        pg.operateUpdate(linkingQuery);
+//    }
 
     // for creating books that already exist in the db
     public Book(Integer id, String name, Integer published, boolean rented)  {
@@ -45,13 +46,6 @@ public class Book {
         this.book = book;
     }
 
-    private void setPg(Database pg) {
-        this.pg = pg;
-    }
-
-    private Database getPg() {
-        return this.pg;
-    }
 
     private void setId(Integer id) {
         this.id = id;

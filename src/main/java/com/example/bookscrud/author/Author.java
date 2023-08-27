@@ -9,47 +9,41 @@ import java.sql.SQLException;
 
 public class Author {
     private ResultSet author;
-    private Database pg;
+
     //
     private Integer id;
-    private String name;
+    private String fn;
+    private String ln;
     private Integer authorId;
-    private Integer year;
+    private Integer firstPublished;
     private Boolean rented;
 
-    public Author(Database pg, String name, Integer authorId, Integer published) throws SQLException {
-        this.name = name;
-        this.authorId = authorId;
-        this.year = published;
-        BookSQLMaker bookTool = new BookSQLMaker();
-        String query = bookTool.createBook(name, published);
-        ResultSet book = pg.operate(query);
-        this.setBook(book);
-        this.setPg(pg);
-        // establish link
-        AuthorshipSQLMaker authorshipTool = new AuthorshipSQLMaker();
-        String linkingQuery = authorshipTool.createAuthorship(authorId, this.getId());
-        pg.operateUpdate(linkingQuery);
-    }
+    // saying no to author constructors automatically doing stuff with the db
+//    public Author(String name, Integer authorId, Integer published) throws SQLException {
+//        this.name = name;
+//        this.authorId = authorId;
+//        this.year = published;
+//        BookSQLMaker bookTool = new BookSQLMaker();
+//        String query = bookTool.createBook(name, published);
+//        ResultSet book = pg.operate(query);
+//        this.setBook(book);
+//        this.setPg(pg);
+//        // establish link
+//        AuthorshipSQLMaker authorshipTool = new AuthorshipSQLMaker();
+//        String linkingQuery = authorshipTool.createAuthorship(authorId, this.getId());
+//        pg.operateUpdate(linkingQuery);
+//    }
 
     // for creating books that already exist in the db
-    public Author(Integer id, String name, Integer published, boolean rented)  {
+    public Author(Integer id, String fn, String ln, Integer firstPublished)  {
         this.id = id;
-        this.name = name;
-        this.year = published;
-        this.rented = rented;
+        this.fn = fn;
+        this.ln = ln;
+        this.firstPublished = firstPublished;
     }
 
     private void setBook(ResultSet book) {
-        this.book = book;
-    }
-
-    private void setPg(Database pg) {
-        this.pg = pg;
-    }
-
-    private Database getPg() {
-        return this.pg;
+        this.author = book;
     }
 
     private void setId(Integer id) {
@@ -60,21 +54,34 @@ public class Author {
         if (this.id != null) {
             return this.id;
         }
-        this.book.next();
-        String theId = this.book.getString(1);
+        this.author.next();
+        String theId = this.author.getString(1);
         Integer id = Integer.parseInt(theId);
         this.setId(id);
         return id;
     }
 
+    public String getFn() {
+        return this.fn;
+    }
+
+    public String getLn() {
+        return this.ln;
+    }
+
+    public int getYearPublished() {
+        return this.firstPublished;
+    }
+
     public void addAuthor(Integer authorId) throws SQLException {
         AuthorshipSQLMaker authorshipTool = new AuthorshipSQLMaker();
         String linkingQuery = authorshipTool.createAuthorship(authorId, this.getId());
-        Database pg = this.getPg();
-        pg.operateUpdate(linkingQuery);
-        BookSQLMaker bookTool = new BookSQLMaker();
-        ResultSet linked = pg.operate(bookTool.getBooksForAuthor(authorId));
-        this.setBook(linked);
+        //todo: move this pg stuff out of here
+//        Database pg = this.getPg();
+//        pg.operateUpdate(linkingQuery);
+//        BookSQLMaker bookTool = new BookSQLMaker();
+//        ResultSet linked = pg.operate(bookTool.getBooksForAuthor(authorId));
+//        this.setBook(linked);
 
     }
 

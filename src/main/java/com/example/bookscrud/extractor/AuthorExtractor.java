@@ -1,6 +1,6 @@
 package com.example.bookscrud.extractor;
 
-import com.example.bookscrud.objects.Author;
+import com.example.bookscrud.author.Author;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
